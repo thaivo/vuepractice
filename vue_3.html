@@ -14,6 +14,22 @@
 	<div id="app">
 		<span v-if="profile">
 			Profile of {{profile.fname}} {{profile.lname}} 
+			<figure>
+				<span v-if="profile.pic">
+					<img v-bind:src="profile.pic" v-bind:alt="profile.desc">
+				</span>
+				<span v-else>
+					<img src="no-image-icon-23489.png" alt="your profile image not found">
+				</span>
+				<figcaption>
+					<span v-if="profile.bio">
+						{{profile.bio}}
+					</span>
+					<span v-else>
+						No bio available
+					</span>
+				</figcaption>
+			</figure>
 		</span>
 		<span v-else>
 			No Profile Data found.
@@ -25,12 +41,15 @@
 		el: '#app',
 		
 		data:{
-			/*
+			
 			profile:{
-				fname: "John",
-				lname: "Doe"	
+				fname: "Nguyen Thai",
+				lname: "Vo",
+				desc: "my appearance",
+				bio: "I am a web development student at Humber College",
+				pic: "My_picture_portfolio.JPG"
 			}
-			*/
+			
 		}
 		
 	});

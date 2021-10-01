@@ -12,7 +12,7 @@
 	<body>
 	
 	<div id="app">
-		<span v-bind:class="{special:true, important:isImportant}">
+		<span v-bind:class="{special:isSpecial, important:isImportant}">
 			look at me!
 		</span>
 	</div>
@@ -21,14 +21,15 @@
 	var app = new Vue({
 		el: '#app',
 		data:{
-			isImportant:true
+			isImportant:Math.random() > 0.5 ? true : false,
+			isSpecial:Math.random() > 0.5 ? true : false
 		}
 	});
 	</script>
 	
 		<!--
 		//step 1: Read Code Above
-		//step 2: Will the span have values for special and important?
+		//step 2: Will the span have values for special and important? Yes
 		//step 3: execute the code and interpret!
 		
 		v-bind:html_attribute_key="{value:boolean_expression}"
