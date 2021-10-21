@@ -15,7 +15,14 @@
 		<ul>
 			<li v-for="part in scene">
 				<span>{{part.character}}</span>
-				<p>{{part.dialogue}}</p>
+				<div v-if="part.character == 'MACBETH'">
+					
+					<p v-nl2br style="color: red;">{{part.dialogue}}</p>
+				</div>
+				<div  v-else>
+					<p v-nl2br style="color: blue;">{{part.dialogue}}</p>
+				</div>
+				
 			</li>
 		</ul>
 	</div>
@@ -38,7 +45,16 @@
 		    //Prithee, peace:
 		    //I dare do all that may become a man;
 		    //Who dares do more is none.
-		}
+		},
+		directives: {
+    nl2br: {
+      inserted(el) {
+        // simplified example, 
+        // works only for nodes without any child elements
+        el.innerHTML = el.textContent.replace(/\n/g, '<br />')
+      }
+    }
+  }
 		
 	});
 	</script>
@@ -55,6 +71,8 @@
 		
 		ASYNCHRONOUS LEARNING EXERCISE
 		1. Add the next line through the console using app.scene.push() in the console
+				app.scene.push({character:'MACBETH',dialogue:'Prithee, peace:\nI dare do all that may become a man;\nWho dares do more is none.'})
+				
 		2. Use v-if to style the text. Red if Macbeth is speaking, blue if Lady Macbeth
 		3. The lines are separated by \n. Can you re-structure the data and logic so that the dialogue has many lines, each line separate?
 		

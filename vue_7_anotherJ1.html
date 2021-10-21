@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin-bottom:10px;}
+		</style>
+	</head>
+	<body>
+	<p>Telemarketer or not?. <a href="https://cemc.uwaterloo.ca/contests/computing/2018/index.html">from the J1 problem hosted by the CCC.</a></p>
+	<div id="app">
+		<div class="formfield">
+			<label>The first digit: <label> <input v-model="first_digit_value">
+		</div>
+		<div class="formfield">
+			<label>The second digit: <label> <input v-model="second_digit_value">
+		</div>
+		<div class="formfield">
+			<label>The third digit: <label> <input v-model="third_digit_value">
+		</div>
+        <div class="formfield">
+			<label>The last digit: <label> <input v-model="last_digit_value">
+		</div>
+		<div id="result">
+			<div><label>show diagnostics:</label><input type="checkbox" v-model="decision_diagnostics"></div>
+			<div v-if="decision_diagnostics">it is a telemarketer number: {{is_telemarketer_number}}</div>
+			<span v-if="is_telemarketer_number">ignore</span>
+			<span v-else>answer</span>
+		</div>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+			decision_diagnostics:false,
+			decision:"answer",
+			first_digit_value:0,
+			second_digit_value:0,
+			third_digit_value:0,
+            last_digit_value:0
+			
+		},
+		computed:{
+			
+			is_telemarketer_number:function(){
+				
+				return ((this.first_digit_value == 8 || this.first_digit_value == 9)
+                        && (this.second_digit_value == this.third_digit_value)
+                        && (this.last_digit_value == 8 || this.last_digit_value == 9));	
+			}
+		}
+	});
+	
+	</script>
+	<!--
+		v-model will allow you to quickly bind form elements to the data property.
+		Make sure to set a default value!
+		The Computed property can be used like data, except for values that are calculated from data properties.
+		In this example 'treat_total' is computed from data properties, and 'answer' is computed from 'treat_total'.
+		
+		ASYNCHRONOUS LEARNING EXERCISE : J1
+		- Find any J1 problem
+		- Imagine an interface that allows the user to enter data on the webpage
+		- Build using v-model and computed properties!
+	
+	-->
+	</body>
+</html>
